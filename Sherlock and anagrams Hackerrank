@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll int
+map<string,int> mp;
+int main()
+{
+    int len,test,a,b,i,j,maxx_lp,ans;
+    cin>>test;
+    while(test--)
+    {
+        mp.clear();
+        string str,temp;
+        ans=0;
+        cin>>str;
+        len=str.length();
+        for(i=0;i<len;i++)
+        {
+            for(j=1;(i+j-1)<len;j++)
+            {
+                temp=str.substr(i,j);
+                sort(temp.begin(),temp.end());
+                mp[temp]++;
+            }
+        }
+        map<string,int>::iterator itr;
+        //maxx_lp=len*25;
+        for(itr=mp.begin();itr!=mp.end();itr++)
+            ans+=((itr->second)*(itr->second-1))/2;
+        cout<<ans<<endl;
+    }
+}
